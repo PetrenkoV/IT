@@ -1,0 +1,9 @@
+<ul *ngFor="let product of products" class="uk-clearfix">
+    <li>
+        <a [routerLink]="['/product', product.id]"> <img src="http://smktesting.herokuapp.com/static/{{product.img}}" alt="" class="uk-align-medium-left front-image"/></a>
+    </li>
+    <li>
+        <h2><a [routerLink]="['/product', product.id]">{{product.title}}</a></h2>
+        <div><a [routerLink]="['/product', product.id]">{{product.text}}</a></div>
+    </li>
+</ul>

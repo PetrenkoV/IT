@@ -1,0 +1,49 @@
+<button (click)="goBack()" class="uk-button">Back</button>
+<div *ngIf="product">
+
+    <ul class="uk-clearfix product">
+        <li>
+            <img src="http://smktesting.herokuapp.com/static/{{product.img}}" alt="" class="uk-align-medium-left front-image"/>
+        </li>
+        <li>
+            <h2>{{product.title}} details!</h2>
+            <p class="description">{{product.text}}</p>
+            <div class="form-group">
+                <label>Add your rate</label><br>
+                <select [(ngModel)]="rate">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option selected value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Add your comment</label><br>
+                <textarea name="" id="" cols="30" rows="10" placeholder="add your comments" [(ngModel)]="text"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="uk-button uk-button-primary" (click)="sendComment(rate, text, this.product.id); this.text = ''; this.rate=''">Send comment</button>
+            </div>
+            <p id="error">Login to leave a comment</p>
+        </li>
+    </ul>
+
+
+
+    <ul class="uk-comment-list" *ngIf="comments">
+        <li *ngFor="let comment of comments">
+            <article class="uk-comment">
+                <header class="uk-comment-header">
+                    <img class="uk-comment-avatar" src="img/avatar.png">
+                    <h4 class="uk-comment-title">{{comment.created_by.username}}</h4>
+                    <div class="uk-comment-meta">Product:{{comment.product}}| Rate: {{comment.rate}}| Date: {{comment.created_at}}</div>
+                </header>
+                <div class="uk-comment-body">
+                    {{comment.text}}
+                </div>
+            </article>
+        </li>
+    </ul>
+</div>
+
